@@ -18,6 +18,7 @@ babel.transformFile(
   path.resolve(__dirname, "../src/index.js"),
   {
     ast: true,
+    babelrc: false, // 是否引用默认配置文件
     code: true,
     sourceMaps: true,
     compact: "auto",
