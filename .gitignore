@@ -3,3 +3,4 @@
 /node_modules
 yarn.lock
 /algo_output/*
+stats.json
