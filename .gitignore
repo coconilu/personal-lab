@@ -4,3 +4,4 @@
 yarn.lock
 /algo_output/*
 stats.json
+/asserts/*
