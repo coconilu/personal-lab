@@ -5,3 +5,4 @@ yarn.lock
 /algo_output/*
 stats.json
 /asserts/*
+webpack-demos/base/output/*
