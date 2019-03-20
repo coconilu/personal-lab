@@ -8,7 +8,7 @@ module.exports = {
   watch: true,
   output: {
     path: __dirname + "/output",
-    publicPath: "/output/",
+    publicPath: "/",
     filename: "bundle.js",
     chunkFilename: "[name].js"
   },
