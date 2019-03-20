@@ -1,5 +1,8 @@
-import css from "./index.css"
+import css from "./index.css";
+
+import hello from "./hello.txt";
 
 document.addEventListener("DOMContentLoaded", e => {
-  console.log("hello world")
-})
+  console.log("TCL: hello", hello);
+  console.log("TCL: css", css);
+});
