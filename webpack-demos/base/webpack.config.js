@@ -1,6 +1,7 @@
 const path = require("path");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
+const CleanWebpackPlugin = require("clean-webpack-plugin");
 
 module.exports = {
   mode: "development",
@@ -16,7 +17,7 @@ module.exports = {
     rules: [
       {
         test: /\.txt$/,
-        use: 'raw-loader'
+        use: "raw-loader"
       },
       {
         test: /.jsx?$/,
@@ -39,10 +40,40 @@ module.exports = {
       {
         test: /\.css$/,
         use: [{ loader: MiniCssExtractPlugin.loader }, "css-loader"]
+      },
+      {
+        test: path.resolve("src/val.js"),
+        use: [{ loader: "val-loader" }]
+      },
+      {
+        test: path.resolve("src/assert/piece.jpg"),
+        use: [
+          {
+            loader: "file-loader",
+            options: {
+              publicPath: "images/",
+              outputPath: "images/"
+            }
+          }
+        ]
+      },
+      {
+        test: path.resolve("src/assert/sea.png"),
+        use: [
+          {
+            loader: "url-loader",
+            options: {
+              limit: 8192,
+              publicPath: "images/",
+              outputPath: "images/"
+            }
+          }
+        ]
       }
     ]
   },
   plugins: [
+    new CleanWebpackPlugin(),
     new HtmlWebpackPlugin({
       template: path.join(__dirname, "./src/tpl.html"),
       filename: "index.html",
