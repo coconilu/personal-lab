@@ -16,6 +16,10 @@ module.exports = {
   module: {
     rules: [
       {
+        test: /\.exec\.js$/,
+        use: ["script-loader"]
+      },
+      {
         test: /\.txt$/,
         use: "raw-loader"
       },
