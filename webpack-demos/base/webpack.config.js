@@ -13,8 +13,19 @@ module.exports = {
     filename: "bundle.js",
     chunkFilename: "[name].js"
   },
+  devServer: {
+    contentBase: "./output",
+    watchContentBase: true,
+    host: "localhost",
+    port: 8088,
+    public: "http://localhost:8088/"
+  },
   module: {
     rules: [
+      {
+        test: /\.exec\.js$/,
+        use: ["script-loader"]
+      },
       {
         test: /\.txt$/,
         use: "raw-loader"

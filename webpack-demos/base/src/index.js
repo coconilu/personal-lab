@@ -3,6 +3,8 @@ import hello from "./hello.txt";
 import val from "./val";
 import piece from "./assert/piece.jpg";
 import sea from "./assert/sea.png";
+import demoJson from "./demo.json";
+import "./polyfill.exec";
 
 document.addEventListener("DOMContentLoaded", e => {
   console.log("TCL: hello", hello);
@@ -12,8 +14,8 @@ document.addEventListener("DOMContentLoaded", e => {
   console.log("TCL: sea", sea);
   insertImg(piece);
   insertImg(sea);
-
-  promiseDemo().then(str => console.log("TCL: str", str))
+  console.log("TCL: demoJson", demoJson);
+  promiseDemo().then(str => console.log("TCL: str", str));
 });
 
 function insertImg(src) {
@@ -26,6 +28,6 @@ function insertImg(src) {
 
 function promiseDemo() {
   return new Promise((resolve, reject) => {
-    resolve("hello promise")
+    resolve("hello promise");
   });
 }
