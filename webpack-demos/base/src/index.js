@@ -12,6 +12,8 @@ document.addEventListener("DOMContentLoaded", e => {
   console.log("TCL: sea", sea);
   insertImg(piece);
   insertImg(sea);
+
+  promiseDemo().then(str => console.log("TCL: str", str))
 });
 
 function insertImg(src) {
@@ -20,4 +22,10 @@ function insertImg(src) {
   img.height = "400";
   img.width = "400";
   document.documentElement.appendChild(img);
+}
+
+function promiseDemo() {
+  return new Promise((resolve, reject) => {
+    resolve("hello promise")
+  });
 }

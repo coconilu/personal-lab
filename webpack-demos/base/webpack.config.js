@@ -23,18 +23,13 @@ module.exports = {
         test: /.jsx?$/,
         include: [path.resolve(__dirname, "src")],
         exclude: [path.resolve(__dirname, "node_modules")],
-        loader: "babel-loader",
-        query: {
-          presets: [
-            [
-              "@babel/env",
-              {
-                targets: {
-                  browsers: "last 2 chrome versions"
-                }
-              }
-            ]
-          ]
+        use: {
+          loader: "babel-loader",
+          options: {
+            presets: ["@babel/preset-env"],
+            plugins: ["@babel/transform-runtime"],
+            cacheDirectory: true
+          }
         }
       },
       {
