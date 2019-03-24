@@ -23,6 +23,17 @@ module.exports = {
   module: {
     rules: [
       {
+        test: /\.tsx?$/,
+        use: [
+          {
+            loader: 'ts-loader',
+            options: {
+              transpileOnly: true
+            }
+          }
+        ]
+      },
+      {
         test: /\.exec\.js$/,
         use: ["script-loader"]
       },

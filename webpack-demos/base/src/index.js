@@ -5,6 +5,7 @@ import piece from "./assert/piece.jpg";
 import sea from "./assert/sea.png";
 import demoJson from "./demo.json";
 import "./polyfill.exec";
+import { hello as tsHello } from "./hello.ts";
 
 document.addEventListener("DOMContentLoaded", e => {
   console.log("TCL: hello", hello);
@@ -16,6 +17,8 @@ document.addEventListener("DOMContentLoaded", e => {
   insertImg(sea);
   console.log("TCL: demoJson", demoJson);
   promiseDemo().then(str => console.log("TCL: str", str));
+  tsHello(`Bayes`);
+  console.log("TCL: tsHello(`Bayes`)", tsHello(`Bayes`));
 });
 
 function insertImg(src) {
