@@ -23,6 +23,10 @@ module.exports = {
   module: {
     rules: [
       {
+        test: /\.pug$/,
+        use: "pug-loader"
+      },
+      {
         test: /\.html$/,
         use: [ {
           loader: 'html-loader',
