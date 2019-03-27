@@ -7,6 +7,7 @@ import demoJson from "./demo.json";
 import "./polyfill.exec";
 import { hello as tsHello } from "./hello.ts";
 import html_loader_tpl from "./html-loader-tpl.html";
+import pug_tpl from "./pug-tpl.pug";
 
 document.addEventListener("DOMContentLoaded", e => {
   console.log("TCL: hello", hello);
@@ -21,6 +22,10 @@ document.addEventListener("DOMContentLoaded", e => {
   tsHello(`Bayes`);
   console.log("TCL: tsHello(`Bayes`)", tsHello(`Bayes`));
   console.log("TCL: html_loader_tpl", html_loader_tpl);
+  console.log(
+    "TCL: pug_tpl({ article: `I'd love pug!` })",
+    pug_tpl({ article: `I'd love pug!` })
+  );
 });
 
 function insertImg(src) {
