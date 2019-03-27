@@ -63,7 +63,7 @@ module.exports = {
               convertToAbsoluteUrls: true
             }
           },
-          { loader: "css-loader" }
+          { loader: "file-loader" }
         ]
       },
       {
