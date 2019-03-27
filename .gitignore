@@ -6,3 +6,4 @@ yarn.lock
 stats.json
 /asserts/*
 webpack-demos/base/output/*
+webpack-demos/advance/dist/*
