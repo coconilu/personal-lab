@@ -2,6 +2,7 @@
 
 const path = require("path");
 const CleanWebpackPlugin = require("clean-webpack-plugin");
+const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 
 module.exports = {
   mode: "development",
@@ -12,6 +13,13 @@ module.exports = {
     filename: "bundle.js",
     publicPath: "/"
   },
+  devServer: {
+    contentBase: "./dist",
+    watchContentBase: true,
+    host: "localhost",
+    port: 8088,
+    public: "http://localhost:8088"
+  },
   module: {
     rules: [
       { test: /\.jpg$/, use: ["file-loader"] },
@@ -20,9 +28,9 @@ module.exports = {
         test: /\.html$/,
         use: [
           {
-            loader:
-              "html-loader",
+            loader: "file-loader?name=index.[ext]!extract-loader!html-loader",
             options: {
+              attrs: ["img:src", "link:href"],
               minimize: true,
               removeComments: false,
               collapseWhitespace: false,
@@ -33,7 +41,7 @@ module.exports = {
       },
       {
         test: /\.css$/,
-        use: [{ loader: "style-loader" }, { loader: "css-loader" }]
+        use: [{ loader: MiniCssExtractPlugin.loader }, { loader: "css-loader" }]
       },
       {
         test: /.jsx?$/,
@@ -52,5 +60,13 @@ module.exports = {
   },
   resolve: {},
   devtool: "source-map",
-  plugins: [new CleanWebpackPlugin()]
+  plugins: [
+    new CleanWebpackPlugin(),
+    new MiniCssExtractPlugin({
+      // Options similar to the same options in webpackOptions.output
+      // both options are optional
+      filename: "[name].css",
+      chunkFilename: "[id].css"
+    })
+  ]
 };
