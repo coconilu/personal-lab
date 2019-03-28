@@ -6,7 +6,7 @@ const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 
 module.exports = {
   mode: "development",
-  entry: ["./app/index.js", "./app/tpl.html"],
+  entry: ["./app/index.js"],
   context: path.resolve(__dirname),
   output: {
     path: path.resolve(__dirname, "dist"),
@@ -38,7 +38,16 @@ module.exports = {
         test: /\.html$/,
         use: [
           {
-            loader: "file-loader?name=[path][name].[ext]!extract-loader!html-loader",
+            loader: "file-loader",
+            options: {
+              name: "[name].[ext]"
+            }
+          },
+          {
+            loader: "extract-loader"
+          },
+          {
+            loader: "html-loader",
             options: {
               attrs: ["img:src", "link:href"],
               minimize: true,
