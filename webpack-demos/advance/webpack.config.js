@@ -6,7 +6,7 @@ const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 
 module.exports = {
   mode: "development",
-  entry: "./app/index.js",
+  entry: ["./app/index.js", "./app/tpl.html"],
   context: path.resolve(__dirname),
   output: {
     path: path.resolve(__dirname, "dist"),
@@ -22,13 +22,23 @@ module.exports = {
   },
   module: {
     rules: [
-      { test: /\.jpg$/, use: ["file-loader"] },
+      {
+        test: /\.jpg$/,
+        use: [
+          {
+            loader: "file-loader",
+            options: {
+              name: `[path][name].[ext]`
+            }
+          }
+        ]
+      },
       { test: /\.png$/, use: ["url-loader?mimetype=image/png"] },
       {
         test: /\.html$/,
         use: [
           {
-            loader: "file-loader?name=index.[ext]!extract-loader!html-loader",
+            loader: "file-loader?name=[path][name].[ext]!extract-loader!html-loader",
             options: {
               attrs: ["img:src", "link:href"],
               minimize: true,
@@ -41,7 +51,16 @@ module.exports = {
       },
       {
         test: /\.css$/,
-        use: [{ loader: MiniCssExtractPlugin.loader }, { loader: "css-loader" }]
+        use: [
+          {
+            loader: "style-loader/url",
+            options: {
+              sourceMap: true,
+              convertToAbsoluteUrls: true
+            }
+          },
+          { loader: "file-loader" }
+        ]
       },
       {
         test: /.jsx?$/,
@@ -60,13 +79,5 @@ module.exports = {
   },
   resolve: {},
   devtool: "source-map",
-  plugins: [
-    new CleanWebpackPlugin(),
-    new MiniCssExtractPlugin({
-      // Options similar to the same options in webpackOptions.output
-      // both options are optional
-      filename: "[name].css",
-      chunkFilename: "[id].css"
-    })
-  ]
+  plugins: [new CleanWebpackPlugin()]
 };

@@ -5,11 +5,11 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <title>Advance</title>
-  <link rel="stylesheet" href="${require(`./index.css`)}">
+  <link rel="stylesheet" href="${require(`file-loader?name=[path][name].[ext]!./index.css`)}">
 </head>
 <body>
   <p>Hello Advance</p>
-  <img src="${require(`../assert/a.jpg`)}" alt="" style="width: 400;height: 250;">
+  <img src="../assert/a.jpg" alt="" style="width: 400;height: 250;">
   <img src="${require(`../assert/b.jpg`)}" alt="" style="width: 400;height: 250;">
 </body>
 </html>

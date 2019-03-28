@@ -1,4 +1,5 @@
-import html from "./tpl.html";
+// import html from "./tpl.html";
+import css from "./index.css";
 
 // document.addEventListener("DOMContentLoaded", () => {
 //   console.log("hello app!");
@@ -6,4 +7,5 @@ import html from "./tpl.html";
 // });
 
 console.log("hello app!");
-console.log("TCL: html", html);
+// console.log("TCL: html", html);
+console.log("TCL: css", css);
