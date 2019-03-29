@@ -11,7 +11,8 @@ module.exports = {
   output: {
     path: path.resolve(__dirname, "dist"),
     filename: "bundle.js",
-    publicPath: "/"
+    publicPath: "/",
+    chunkFilename: "[name].[hash:5].js"
   },
   devServer: {
     contentBase: "./dist",
@@ -22,6 +23,18 @@ module.exports = {
   },
   module: {
     rules: [
+      {
+        test: /\.bundle\.js$/,
+        use: [
+          {
+            loader: "bundle-loader",
+            options: {
+              lazy: true,
+              name: `bayes`
+            }
+          }
+        ]
+      },
       {
         test: /\.jpg$/,
         use: [
