@@ -1,6 +1,7 @@
 import html from "html-loader!./index.html";
 import css from "./index.css";
 import stylus from "./demo.styl";
+import bundle from "./hello.bundle.js";
 
 // document.addEventListener("DOMContentLoaded", () => {
 //   console.log("hello app!");
@@ -11,3 +12,6 @@ console.log("hello app!");
 console.log("TCL: html", html);
 console.log("TCL: css", css);
 console.log("TCL: stylus", stylus);
+bundle(file => {
+  console.log("TCL: file.hello('bayes')", file.hello("bayes"));
+});
