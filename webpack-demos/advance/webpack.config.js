@@ -86,6 +86,26 @@ module.exports = {
         ]
       },
       {
+        enforce: "pre",
+        test: /\.js$/,
+        exclude: /node_modules/,
+        loader: {
+          loader: "eslint-loader",
+          options: {
+            fix: false,
+            cache: false,
+            formatter: require("eslint/lib/formatters/stylish"),
+            eslintPath: "eslint",
+            emitError: true,
+            emitWarning: false,
+            quiet: false,
+            failOnWarning: true,
+            failOnError: true,
+            outputReport: false
+          }
+        }
+      },
+      {
         test: /.jsx?$/,
         include: [path.resolve(__dirname, "src")],
         exclude: [path.resolve(__dirname, "node_modules")],
