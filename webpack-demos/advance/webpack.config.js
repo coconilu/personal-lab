@@ -2,7 +2,7 @@
 
 const path = require("path");
 const CleanWebpackPlugin = require("clean-webpack-plugin");
-const MiniCssExtractPlugin = require("mini-css-extract-plugin");
+const ManifestPlugin = require('webpack-manifest-plugin');
 
 module.exports = {
   mode: "development",
@@ -135,5 +135,5 @@ module.exports = {
   },
   resolve: {},
   devtool: "source-map",
-  plugins: [new CleanWebpackPlugin()]
+  plugins: [new CleanWebpackPlugin(), new ManifestPlugin()]
 };
