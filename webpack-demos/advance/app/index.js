@@ -2,6 +2,7 @@ import html from "html-loader!./index.html";
 import css from "./index.css";
 import stylus from "./demo.styl";
 import bundle from "./hello.bundle.js";
+import { wouldUse as treeshakingWouldUse } from "./treeshaking.js";
 
 // document.addEventListener("DOMContentLoaded", () => {
 //   console.log("hello app!");
@@ -15,3 +16,5 @@ console.log("TCL: stylus", stylus);
 bundle(file => {
   console.log("TCL: file.hello('bayes')", file.hello("bayes"));
 });
+
+console.log("TCL: treeshakingWouldUse()", treeshakingWouldUse());
