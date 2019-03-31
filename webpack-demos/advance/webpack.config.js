@@ -2,7 +2,8 @@
 
 const path = require("path");
 const CleanWebpackPlugin = require("clean-webpack-plugin");
-const ManifestPlugin = require('webpack-manifest-plugin');
+const ManifestPlugin = require("webpack-manifest-plugin");
+const webpack = require("webpack");
 
 module.exports = {
   mode: "development",
@@ -135,5 +136,15 @@ module.exports = {
   },
   resolve: {},
   devtool: "source-map",
-  plugins: [new CleanWebpackPlugin(), new ManifestPlugin()]
+  plugins: [
+    new CleanWebpackPlugin(),
+    new ManifestPlugin(),
+    new webpack.DefinePlugin({
+      PRODUCTION: JSON.stringify(true),
+      VERSION: JSON.stringify("5fa3b9"),
+      BROWSER_SUPPORTS_HTML5: true,
+      TWO: "1+1",
+      "typeof window": JSON.stringify("object")
+    })
+  ]
 };

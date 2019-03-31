@@ -3,6 +3,7 @@ import css from "./index.css";
 import stylus from "./demo.styl";
 import bundle from "./hello.bundle.js";
 import { wouldUse as treeshakingWouldUse } from "./treeshaking.js";
+import "./define";
 
 // document.addEventListener("DOMContentLoaded", () => {
 //   console.log("hello app!");
