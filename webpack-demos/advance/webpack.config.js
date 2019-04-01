@@ -145,6 +145,7 @@ module.exports = {
       BROWSER_SUPPORTS_HTML5: true,
       TWO: "1+1",
       "typeof window": JSON.stringify("object")
-    })
+    }),
+    new webpack.IgnorePlugin(/define\.js$/)
   ]
 };
