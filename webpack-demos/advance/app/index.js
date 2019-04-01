@@ -3,7 +3,7 @@ import css from "./index.css";
 import stylus from "./demo.styl";
 import bundle from "./hello.bundle.js";
 import { wouldUse as treeshakingWouldUse } from "./treeshaking.js";
-import "./define.js";
+// import "./define.js"; // webpack.IgnorePlugin演示
 
 // document.addEventListener("DOMContentLoaded", () => {
 //   console.log("hello app!");
@@ -19,3 +19,5 @@ bundle(file => {
 });
 
 console.log("TCL: treeshakingWouldUse()", treeshakingWouldUse());
+
+console.log("lodash demo", _.chunk(["a", "b", "c", "d"], 2));

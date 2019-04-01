@@ -146,6 +146,9 @@ module.exports = {
       TWO: "1+1",
       "typeof window": JSON.stringify("object")
     }),
-    new webpack.IgnorePlugin(/define\.js$/)
+    new webpack.IgnorePlugin(/define\.js$/),
+    new webpack.ProvidePlugin({
+      _: "lodash"
+    })
   ]
 };
