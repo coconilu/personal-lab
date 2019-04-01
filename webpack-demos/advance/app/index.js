@@ -20,4 +20,4 @@ bundle(file => {
 
 console.log("TCL: treeshakingWouldUse()", treeshakingWouldUse());
 
-console.log("lodash demo", _.chunk(["a", "b", "c", "d"], 2));
+// console.log("lodash demo", _.chunk(["a", "b", "c", "d"], 2)); // 演示ProvidePlugin的优化是很友好的。
