@@ -4,6 +4,7 @@ const path = require("path");
 
 module.exports = {
   entry: "./index.js",
+  mode: "development",
   context: path.resolve(__dirname),
   output: {
     path: path.resolve(__dirname, "dist"),
@@ -24,6 +25,15 @@ module.exports = {
             cacheDirectory: true
           }
         }
+      },
+      {
+        test: /.md$/,
+        use: [
+          { loader: "raw-loader" },
+          {
+            loader: path.resolve(__dirname, "lib/markdown-loader.js")
+          }
+        ]
       }
     ]
   },
