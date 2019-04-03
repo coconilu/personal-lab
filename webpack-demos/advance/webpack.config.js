@@ -2,16 +2,18 @@
 
 const path = require("path");
 const CleanWebpackPlugin = require("clean-webpack-plugin");
-const MiniCssExtractPlugin = require("mini-css-extract-plugin");
+const ManifestPlugin = require("webpack-manifest-plugin");
+const webpack = require("webpack");
 
 module.exports = {
   mode: "development",
-  entry: ["./app/index.js", "./app/tpl.html"],
+  entry: ["./app/index.js"],
   context: path.resolve(__dirname),
   output: {
     path: path.resolve(__dirname, "dist"),
     filename: "bundle.js",
-    publicPath: "/"
+    publicPath: "/",
+    chunkFilename: "[name].[hash:5].js"
   },
   devServer: {
     contentBase: "./dist",
@@ -22,6 +24,18 @@ module.exports = {
   },
   module: {
     rules: [
+      {
+        test: /\.bundle\.js$/,
+        use: [
+          {
+            loader: "bundle-loader",
+            options: {
+              lazy: true,
+              name: `bayes`
+            }
+          }
+        ]
+      },
       {
         test: /\.jpg$/,
         use: [
@@ -38,7 +52,16 @@ module.exports = {
         test: /\.html$/,
         use: [
           {
-            loader: "file-loader?name=[path][name].[ext]!extract-loader!html-loader",
+            loader: "file-loader",
+            options: {
+              name: "[name].[ext]"
+            }
+          },
+          {
+            loader: "extract-loader"
+          },
+          {
+            loader: "html-loader",
             options: {
               attrs: ["img:src", "link:href"],
               minimize: true,
@@ -63,6 +86,40 @@ module.exports = {
         ]
       },
       {
+        test: /\.styl$/,
+        use: [
+          {
+            loader: "style-loader",
+            options: {
+              sourceMap: true,
+              convertToAbsoluteUrls: true
+            }
+          },
+          { loader: "css-loader" },
+          { loader: "stylus-loader" }
+        ]
+      },
+      {
+        enforce: "pre",
+        test: /\.js$/,
+        exclude: /node_modules/,
+        loader: {
+          loader: "eslint-loader",
+          options: {
+            fix: false,
+            cache: false,
+            formatter: require("eslint/lib/formatters/stylish"),
+            eslintPath: "eslint",
+            emitError: true,
+            emitWarning: false,
+            quiet: false,
+            failOnWarning: true,
+            failOnError: true,
+            outputReport: false
+          }
+        }
+      },
+      {
         test: /.jsx?$/,
         include: [path.resolve(__dirname, "src")],
         exclude: [path.resolve(__dirname, "node_modules")],
@@ -79,5 +136,19 @@ module.exports = {
   },
   resolve: {},
   devtool: "source-map",
-  plugins: [new CleanWebpackPlugin()]
+  plugins: [
+    new CleanWebpackPlugin(),
+    new ManifestPlugin(),
+    new webpack.DefinePlugin({
+      PRODUCTION: JSON.stringify(true),
+      VERSION: JSON.stringify("5fa3b9"),
+      BROWSER_SUPPORTS_HTML5: true,
+      TWO: "1+1",
+      "typeof window": JSON.stringify("object")
+    }),
+    new webpack.IgnorePlugin(/define\.js$/),
+    new webpack.ProvidePlugin({
+      _: "lodash"
+    })
+  ]
 };
