@@ -1,6 +1,7 @@
 "use strict";
 
 const path = require("path");
+const PrintPlugin = require("./lib/print-plugin.js");
 
 module.exports = {
   entry: "./index.js",
@@ -39,5 +40,5 @@ module.exports = {
   },
   resolve: {},
   devtool: "source-map",
-  plugins: []
+  plugins: [new PrintPlugin()]
 };
