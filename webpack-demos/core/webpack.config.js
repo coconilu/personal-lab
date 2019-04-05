@@ -2,6 +2,7 @@
 
 const path = require("path");
 const PrintPlugin = require("./lib/print-plugin.js");
+const webpack = require("webpack");
 
 module.exports = {
   entry: "./index.js",
@@ -38,7 +39,16 @@ module.exports = {
       }
     ]
   },
-  resolve: {},
+  resolve: {
+    alias: {
+      common$: path.resolve(__dirname, "../../lib/index.js")
+    }
+  },
   devtool: "source-map",
-  plugins: [new PrintPlugin()]
+  plugins: [
+    new webpack.ProvidePlugin({
+      common: path.resolve(__dirname, "../../lib/index.js")
+    }),
+    new PrintPlugin()
+  ]
 };
