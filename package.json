@@ -6,9 +6,8 @@
   "scripts": {
     "analyze": "webpack --profile --json > stats.json",
     "gulp": "gulp",
-    "output": "browser-sync start --server ./webpack-demos/base/output --file ./webpack-demos/base/output",
-    "output2": "webpack-dev-server --open",
-    "bs": "browser-sync start --server ./web --file ./web"
+    "wds": "webpack-dev-server --open",
+    "bs": "browser-sync start --server ./html-demos --file ./html-demos"
   },
   "sideEffects": [
     "*.css",
