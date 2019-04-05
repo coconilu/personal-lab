@@ -21,3 +21,15 @@ bundle(file => {
 console.log("TCL: treeshakingWouldUse()", treeshakingWouldUse());
 
 // console.log("lodash demo", _.chunk(["a", "b", "c", "d"], 2)); // 演示ProvidePlugin的优化是很友好的。
+
+import hotCompoent from "./hotComponent.js";
+
+const body = document.body;
+
+body.insertBefore(hotCompoent(), body.firstChild);
+
+if (module.hot) {
+  module.hot.accept("./hotComponent.js", function() {
+    body.replaceChild(hotCompoent(), body.firstChild);
+  });
+}

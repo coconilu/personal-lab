@@ -20,6 +20,7 @@ module.exports = {
     watchContentBase: true,
     host: "localhost",
     port: 8088,
+    hot: true,
     public: "http://localhost:8088"
   },
   module: {
@@ -149,6 +150,8 @@ module.exports = {
     new webpack.IgnorePlugin(/define\.js$/),
     new webpack.ProvidePlugin({
       _: "lodash"
-    })
+    }),
+    new webpack.NamedModulesPlugin(),
+    new webpack.HotModuleReplacementPlugin()
   ]
 };
