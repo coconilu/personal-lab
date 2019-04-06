@@ -4,6 +4,7 @@ const path = require("path");
 const CleanWebpackPlugin = require("clean-webpack-plugin");
 const ManifestPlugin = require("webpack-manifest-plugin");
 const webpack = require("webpack");
+const MinifyPlugin = require("babel-minify-webpack-plugin");
 
 module.exports = {
   mode: "development",
@@ -152,6 +153,15 @@ module.exports = {
       _: "lodash"
     }),
     new webpack.NamedModulesPlugin(),
-    new webpack.HotModuleReplacementPlugin()
+    new webpack.HotModuleReplacementPlugin(),
+    new MinifyPlugin(
+      {},
+      {
+        test: /.jsx?$/,
+        include: [path.resolve(__dirname, "src")],
+        exclude: [path.resolve(__dirname, "node_modules")],
+        comments: false
+      }
+    )
   ]
 };
