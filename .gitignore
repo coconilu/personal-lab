@@ -8,3 +8,4 @@ stats.json
 webpack-demos/base/output/*
 webpack-demos/advance/dist/*
 webpack-demos/core/dist/*
+react-demos/react-webpack/dist/*

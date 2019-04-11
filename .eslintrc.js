@@ -1,10 +1,14 @@
 module.exports = {
   root: true,
   parserOptions: {
-    sourceType: 'module'
+    sourceType: "module",
+    ecmaFeatures: {
+      jsx: true
+    }
   },
-  "env": {
-    "browser": true,
-    "node": true
-}
-}
+  env: {
+    browser: true,
+    node: true
+  },
+  plugins: ["react"]
+};
