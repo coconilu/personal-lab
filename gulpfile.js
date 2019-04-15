@@ -4,12 +4,12 @@ const browserSync = require("browser-sync").create();
 function serve(cb) {
   browserSync.init({
     server: {
-      baseDir: "./web"
+      baseDir: "./html-demos"
     }
   });
-  watch("web/*.html").on("change", browserSync.reload);
-  watch("web/*.js").on("change", browserSync.reload);
-  watch("web/*.css").on("change", browserSync.reload);
+  watch("html-demos/*.html").on("change", browserSync.reload);
+  watch("html-demos/*.js").on("change", browserSync.reload);
+  watch("html-demos/*.css").on("change", browserSync.reload);
   cb && cb();
 }
 
