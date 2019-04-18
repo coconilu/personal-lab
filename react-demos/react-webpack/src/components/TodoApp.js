@@ -53,8 +53,9 @@ class TodoApp extends Component {
         </p>
         {todoList.map((todo, index) => (
           <TodoItem
-            checktStatus={todo.checkStatus}
+            checkStatus={todo.checkStatus}
             todoItem={todo.todoItem}
+            todoIndex={index}
             key={index}
           />
         ))}

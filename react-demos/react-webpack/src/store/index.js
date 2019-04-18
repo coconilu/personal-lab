@@ -11,13 +11,13 @@ export default createStore((state = todoState, action) => {
           ...state.todoList,
           {
             todoItem: action.payload.todoItem,
-            checktStatus: action.payload.checktStatus
+            checkStatus: action.payload.checkStatus
           }
         ]
       });
     case todoActions.DONE_TODO:
       const tL = [...state.todoList];
-      tL[action.payload.index]["checktStatus"] = true;
+      tL[action.payload.index]["checkStatus"] = !tL[action.payload.index]["checkStatus"];
       return Object.assign({}, state, {
         todoList: [...tL]
       });
