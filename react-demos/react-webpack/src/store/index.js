@@ -6,7 +6,6 @@ import todoActions from "../actions/index";
 export default createStore((state = todoState, action) => {
   switch (action.type) {
     case todoActions.ADD_TODO:
-    default:
       return Object.assign({}, state, {
         todoList: [
           ...state.todoList,
@@ -18,7 +17,7 @@ export default createStore((state = todoState, action) => {
       });
     case todoActions.DONE_TODO:
       const tL = [...state.todoList];
-      tL[action.payload.index][checktStatus] = true;
+      tL[action.payload.index]["checktStatus"] = true;
       return Object.assign({}, state, {
         todoList: [...tL]
       });
@@ -29,5 +28,7 @@ export default createStore((state = todoState, action) => {
           ...state.todoList.slice(action.payload.index + 1)
         ]
       });
+    default:
+      return state;
   }
 });

@@ -7,10 +7,11 @@ class TodoItem extends Component {
   render() {
     return (
       <p>
-        <input type="checkbox" checked={this.props.checktStatus}>
-          {this.props.todoItem}
-        </input>
+        <input type="checkbox" checked={this.props.checktStatus} />
+        {this.props.todoItem}
       </p>
     );
   }
 }
+
+export default TodoItem;
