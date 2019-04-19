@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import MyButton from "./Button";
 import TodoApp from "./components/TodoApp";
+import RouterExp from "./router";
 
 import { Provider } from "react-redux";
 import store from "./store";
@@ -14,6 +15,7 @@ class App extends Component {
         <Provider store={store}>
           <TodoApp />
         </Provider>
+        <RouterExp />
       </div>
     );
   }
