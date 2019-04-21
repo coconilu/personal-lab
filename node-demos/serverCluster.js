@@ -13,6 +13,10 @@ if (cluster.isMaster) {
   }
   cluster.on("exit", (worker, code, signal) => {
     console.log(`worker ${worker.process.pid} died`);
+    if (code != 0 && !worker.suicide) {
+      // 如果子进程意外挂掉，重启一个子进程
+      cluster.fork();
+    }
   });
   cluster.on("online", worker => {
     console.log(`Worker ${worker.process.pid} started`);
