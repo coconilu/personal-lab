@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>cropper</title>
+    <style>
+      .container {
+        display: inline-block;
+        height: 500px;
+        position: relative;
+      }
+      .source_pic {
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        height: 500px;
+      }
+      .mask {
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        background-color: black;
+        opacity: 0.5;
+      }
+      .shear_area {
+        width: 60px;
+        height: 60px;
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        overflow: hidden;
+        cursor: move;
+      }
+      .shear_pic {
+        height: 500px;
+        position: relative;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <img class="source_pic" src="" alt="" />
+      <div class="mask"></div>
+      <div class="shear_area">
+        <img class="shear_pic" src="" alt="" />
+      </div>
+    </div>
+    <script>
+      const container = document.querySelector(".container");
+      const pic = document.querySelector(".source_pic");
+      const mask = document.querySelector(".mask");
+      const shear_area = document.querySelector(".shear_area");
+      const shear_pic = document.querySelector(".shear_pic");
+      pic.onload = function() {
+        container.style.width = pic.width + "px";
+        console.log(
+          `TCL: pic.onload -> container.width`,
+          container.style.width
+        );
+        console.log(`TCL: pic.onload -> pic.width`, pic.width);
+      };
+      shear_pic.onload = function() {
+        onMonve(container, shear_pic);
+      };
+      pic.src = "../海贼王.jpg";
+      shear_pic.src = "../海贼王.jpg";
+
+      function onMonve(container, target) {
+        let canMove = false;
+        let areaX = 0;
+        let areaY = 0;
+        let picX = 0;
+        let picY = 0;
+
+        let startX = 0;
+        let startY = 0;
+
+        container.addEventListener("mousedown", e => {
+          console.log(`TCL: mousedown -> e`, e);
+          if (e.target === target) {
+            canMove = true;
+            startX = e.clientX;
+            startY = e.clientY;
+            e.preventDefault();
+          }
+        });
+        container.addEventListener("mousemove", e => {
+          if (canMove) {
+            console.log(`TCL: mousemove -> e`, e);
+            let offsetX = e.clientX - startX;
+            let offsetY = e.clientY - startY;
+            areaX += offsetX;
+            areaY += offsetY;
+            picX -= offsetX;
+            picY -= offsetY;
+            shear_area.style = `transform: translateX(${areaX}px) translateY(${areaY}px);`;
+            shear_pic.style = `transform: translateX(${picX}px) translateY(${picY}px);`;
+            startX = e.clientX;
+            startY = e.clientY;
+          }
+        });
+        container.addEventListener("mouseup", e => {
+          console.log(`TCL: mouseup -> e`, e);
+          if (e.target === target) {
+            canMove = false;
+          }
+        });
+      }
+    </script>
+    <script></script>
+  </body>
+</html>
